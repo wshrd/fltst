@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select User</title>
+</head>
+<body>
+    <h1>Select a User</h1>
+    <form action="{{ url_for('set_forwarding') }}" method="post">
+        <select name="user">
+            {% for user in users %}
+                <option value="{{ user.samaccountname }}">{{ user.name }} ({{ user.mail }})</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input type="radio" name="action" value="enable" checked> Enable Forwarding
+        <input type="radio" name="action" value="disable"> Disable Forwarding
+        <br><br>
+        <input type="text" name="forward_to" placeholder="Enter email to forward to (if enabling)">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

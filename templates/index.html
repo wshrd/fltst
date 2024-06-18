@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select OU</title>
+</head>
+<body>
+    <h1>Select an Organizational Unit</h1>
+    <form action="{{ url_for('select_user') }}" method="post">
+        <select name="ou">
+            {% for ou in ous %}
+                <option value="{{ ou }}">{{ ou }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Select">
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
